@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App2"
+             xmlns:converter="clr-namespace:App2.ValueConverters"
+             xmlns:markupExtensions="clr-namespace:App2.MarkupExtensions"
+             x:Class="App2.FlightsList">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="labelAirline" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="BackgroundColor" Value="DarkBlue" />
+      </Style>
+      <Style x:Key="labelStatusFail" TargetType="Label">
+        <Setter Property="TextColor" Value="Red"/>
+        <Setter Property="FontSize" Value="Small" />
+      </Style>
+      <Style x:Key="labelStatusOk" TargetType="Label">
+        <Setter Property="TextColor" Value="Green"/>
+        <Setter Property="FontSize" Value="Small" />
+      </Style>
+      <Style x:Key="labelHeader" TargetType="Label">
+        <Setter Property="TextColor" Value="Gray"/>
+        <Setter Property="FontSize" Value="15" />
+      </Style>
+      <Style x:Key="label" TargetType="Label">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontSize" Value="15" />
+      </Style>
+      <converter:AirlinesConverter x:Key="airlinesConverter" />
+      <converter:StatusConverter x:Key="statusConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+
+      <ListView  Margin="5,20,5,5" ItemsSource="{Binding}">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="25*" />
+                  <RowDefinition Height="15*" />
+                  <RowDefinition Height="40*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="20*" />
+                  <ColumnDefinition Width="20*" />
+                  <ColumnDefinition Width="20*" />
+                  <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+
+                <Frame CornerRadius="10" Margin="5" Padding="0" IsClippedToBounds="True">
+                  <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start"
+                       Source="{Binding Airline, Converter= {StaticResource airlinesConverter}}"
+                       Aspect="AspectFit"></Image>
+                </Frame>
+                <!--<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start"
+                     Text="{Binding Airlines}" Style="{StaticResource labelAirline}" />-->
+                <!--<Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalOptions="End"
+                     Text="{Binding Status}" Style="{Binding Status, Converter={StaticResource statusConverter}}"/>-->
+                <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                     Margin="5"  Text="{Binding Status}">
+                  <Label.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Arrived">
+                      <Setter Property="TextColor" Value="Green"></Setter>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Delayed">
+                      <Setter Property="TextColor" Value="Red"></Setter>
+                    </DataTrigger>
+                  </Label.Triggers>
+                </Label>
+                <Label Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Start"
+                     Text="{Binding FlightNumber}"  Style="{StaticResource labelHeader}"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="STA" HorizontalTextAlignment="Start"
+                     Style="{StaticResource labelHeader}"/>
+                <Label Grid.Row="1" Grid.Column="2" Text="ETA" HorizontalTextAlignment="Start"
+                     Style="{StaticResource labelHeader}"/>
+                <Label Grid.Row="1" Grid.Column="3" Text="Terminal" HorizontalTextAlignment="Start"
+                     Style="{StaticResource labelHeader}"/>
+                <Label Grid.Row="2" Grid.Column="0" Text="{Binding Arrival}" HorizontalTextAlignment="Start"
+                     Style="{StaticResource label}"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding STA}" HorizontalTextAlignment="Start"
+                     Style="{StaticResource label}"/>
+                <Label Grid.Row="2" Grid.Column="2" Text="{Binding ETA}" HorizontalTextAlignment="Start"
+                     Style="{StaticResource label}"/>
+                <Label Grid.Row="2" Grid.Column="3" Text="{Binding Terminal}" HorizontalTextAlignment="Start"
+                     Style="{StaticResource label}"/>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+
+  </ContentPage.Content>
+</ContentPage>

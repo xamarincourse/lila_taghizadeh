@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:app41="clr-namespace:App2"
+             xmlns:converter="clr-namespace:App2.ValueConverters"
+             xmlns:renderers="clr-namespace:App2.Renderers"
+             x:Class="App2.flights">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="labelH1" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="40" />
+      </Style>
+      <Style x:Key="labelH2" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="25" />
+      </Style>
+      <Style x:Key="labelH3" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="15" />
+      </Style>
+      <Style x:Key="lableBoldH2" TargetType="Label">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="10" />
+        <Setter Property="FontAttributes" Value="Bold" />
+      </Style>
+      <Style x:Key="pickerH3" TargetType="Picker">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="15" />
+      </Style>
+      <Style x:Key="labelStatusFail" TargetType="Label">
+        <Setter Property="TextColor" Value="Red"/>
+        <Setter Property="FontSize" Value="Small" />
+      </Style>
+      <Style x:Key="labelStatusOk" TargetType="Label">
+        <Setter Property="TextColor" Value="Green"/>
+        <Setter Property="FontSize" Value="Small" />
+      </Style>
+      <converter:DepartConverter x:Key="departConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <!--<ContentPage.BindingContext>
+    <app41:FlightInfo MovingTxt="It's go time."
+                      BoardingTime="8:20 PM"
+                      DepartureGate="B79"
+                      Departure="SFO"
+                      Arrival="LAX"
+                      Term="1"
+                      ArraivalGate="A5"
+                      Seat="5A"
+                      Depart="1:00PM"
+                      >
+    </app41:FlightInfo>
+  </ContentPage.BindingContext>-->
+  <ContentPage.Content>
+
+    <StackLayout>
+      <renderers:GradientLayout
+        ColorsList="#7F3E97,#A13370,#DD202A"
+        Mode="ToBottomRight">
+
+        <StackLayout  x:Name="layout" >
+          <Label Text="{Binding MovingTxt}" VerticalOptions="Center"
+        HorizontalOptions="CenterAndExpand" Style="{StaticResource labelH2}" />
+          <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label Text="Boarding"
+                 Style="{StaticResource labelH3}" />
+            <Label Text="{Binding BoardingTime}"
+                 Style="{StaticResource labelH3}" />
+            <Label Text="at Gate"
+                 Style="{StaticResource labelH3}" />
+            <Label Text="{Binding DepartureGate}"
+                 Style="{StaticResource labelH3}" />
+          </StackLayout>
+          <StackLayout Orientation="Horizontal">
+            <Label Text="SFO" VerticalOptions="End"
+          HorizontalOptions="EndAndExpand"  Style="{StaticResource labelH1}"/>
+            <Label Style="{StaticResource labelH1}">→</Label>
+            <Label Text="LAX" VerticalOptions="Start"
+          HorizontalOptions="StartAndExpand"  Style="{StaticResource labelH1}"/>
+          </StackLayout>
+          <Frame BorderColor="White" HorizontalOptions="Center" Padding="10,5,10,5">
+            <Label Text="VIEW BOARDING PASS"  VerticalOptions="Center"
+                  HorizontalOptions="CenterAndExpand" Style="{StaticResource lableBoldH2}" >
+              <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="onViewBoardingPassClicked" NumberOfTapsRequired="1" />
+              </Label.GestureRecognizers>
+            </Label>
+          </Frame>
+          <Picker x:Name="picker" TextColor="white" HorizontalOptions="Center" >
+            <Picker.ItemsSource>
+              <x:Array Type="{x:Type x:String}">
+                <x:String>All flights</x:String>
+                <x:String>Departure flight</x:String>
+                <x:String>Arrival flight</x:String>
+              </x:Array>
+            </Picker.ItemsSource>
+            <Picker.SelectedIndex>0</Picker.SelectedIndex>
+          </Picker>
+          <!--<Picker Title="All flights" Style="{StaticResource pickerH3}"></Picker>-->
+        </StackLayout>
+        <Grid x:Name="controlGrid" RowSpacing="0" ColumnSpacing="0">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="22*" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*" />
+            <ColumnDefinition Width="18*" />
+            <ColumnDefinition Width="18*" />
+            <ColumnDefinition Width="23*" />
+            <ColumnDefinition Width="23*" />
+          </Grid.ColumnDefinitions>
+
+          <StackLayout  BackgroundColor="White" Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+            <Label FontSize="14" TextColor="red" Text="TERM" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+            <Label FontSize="12" TextColor="black" Text="{Binding Term}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+          </StackLayout>
+          <StackLayout BackgroundColor="White" Orientation="Vertical" Grid.Row="0" Grid.Column="1">
+            <Label FontSize="14" TextColor="red" Text="GATE" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+            <Label FontSize="12" TextColor="black" Text="{Binding ArraivalGate}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+          </StackLayout>
+          <StackLayout Spacing="0" BackgroundColor="White" Orientation="Vertical" Grid.Row="0" Grid.Column="2">
+            <Label FontSize="14" TextColor="red" Text="SEAT" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+            <Label FontSize="12" TextColor="black" Text="{Binding Seat}" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+          </StackLayout>
+          <StackLayout Spacing="0" BackgroundColor="White" Orientation="Vertical" Grid.Row="0" Grid.Column="3">
+            <Label FontSize="14" TextColor="red" Text="DEPART" HorizontalOptions="CenterAndExpand" VerticalOptions="Start" />
+            <Label FontSize="12" TextColor="black" Text="1:00PM " HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+          </StackLayout>
+          <StackLayout Spacing="0" BackgroundColor="White" Orientation="Vertical" Grid.Row="0" Grid.Column="4">
+            <Label FontSize="14" TextColor="red" Text="" HorizontalOptions="Start" VerticalOptions="Start" />
+          <StackLayout Orientation="Horizontal">
+              <Label FontSize="12"
+                   Text="{Binding Depart, Converter= {StaticResource departConverter}}"
+                   HorizontalOptions="Center" VerticalOptions="Start">
+                <Label.Triggers>
+                  <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="On_Time">
+                    <Setter Property="TextColor" Value="Green"></Setter>
+                  </DataTrigger>
+                  <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Delayed">
+                    <Setter Property="TextColor" Value="Red"></Setter>
+                  </DataTrigger>
+                </Label.Triggers>
+                <Label.FontFamily>
+                  <OnPlatform  x:TypeArguments="x:String">
+                    <On Platform="UWP" Value="Assets/fa-solid-900.ttf#Font Awesome 5 Free" />
+                    <On Platform="Android" Value="fa-solid-900.ttf#Font Awesome 5 Free" />
+                  </OnPlatform>
+                </Label.FontFamily>
+              </Label>
+              <Label FontSize="12" TextColor="Green" Text="ON-TIME" HorizontalOptions="End"  VerticalOptions="End"/>
+            </StackLayout>
+          </StackLayout>
+        </Grid>
+
+      </renderers:GradientLayout>
+
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>
+

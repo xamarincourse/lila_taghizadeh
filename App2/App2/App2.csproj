@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\activities.jpg" />
+    <None Remove="Images\cars.jpg" />
+    <None Remove="Images\firmo.jpg" />
+    <None Remove="Images\flights.jpg" />
+    <None Remove="Images\hotels.jpg" />
+    <None Remove="Images\jetairways.png" />
+    <None Remove="Images\mahanairlogo.png" />
+    <None Remove="Images\san-francisco.jpg" />
+    <None Remove="Images\union.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\activities.jpg" />
+    <EmbeddedResource Include="Images\cars.jpg" />
+    <EmbeddedResource Include="Images\firmo.jpg" />
+    <EmbeddedResource Include="Images\flights.jpg" />
+    <EmbeddedResource Include="Images\hotels.jpg" />
+    <EmbeddedResource Include="Images\jetairways.png" />
+    <EmbeddedResource Include="Images\mahanairlogo.png" />
+    <EmbeddedResource Include="Images\san-francisco.jpg" />
+    <EmbeddedResource Include="Images\union.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Windows.Foundation.UniversalApiContract">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Windows Kits\10\References\10.0.17763.0\Windows.Foundation.UniversalApiContract\7.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+      <IsWinMDFile>true</IsWinMDFile>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="flights.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="FlightsList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

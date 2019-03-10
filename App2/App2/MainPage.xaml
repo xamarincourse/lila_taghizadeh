@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App2"
+             xmlns:markupExtensions="clr-namespace:App2.MarkupExtensions"
+             x:Class="App2.MainPage">
+
+  <!--<ContentPage.Content>
+    <StackLayout Spacing="10" x:Name="layout" >
+      <StackLayout Orientation="Horizontal">
+        <BoxView Color="Yellow" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+        <BoxView Color="Green" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+      </StackLayout>
+
+      <StackLayout Orientation="Horizontal">
+        <BoxView Color="Yellow" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+        <BoxView Color="Green" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+      </StackLayout>
+
+      <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Horizontal">
+          <Label Text="Popular Hotels Tonight"  VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"></Label>
+          <Label Text="See more" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand"></Label>
+
+        </StackLayout>
+      </StackLayout>
+      <BoxView Color="Yellow" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+      <StackLayout Orientation="Horizontal">
+        <BoxView Color="Yellow" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+        <BoxView Color="Green" VerticalOptions="FillAndExpand"
+        HorizontalOptions="FillAndExpand" />
+      </StackLayout>
+    </StackLayout>
+  </ContentPage.Content>-->
+
+  <!--<StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+          <Label Text="It's go time."></Label>
+          <Label Text="Boarding 8:20 PM at Gate B79"></Label>
+      </StackLayout>-->
+  <!--<StackLayout Orientation="Horizontal">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="50*" />
+          <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="50*" />
+          <ColumnDefinition Width="50*" />
+        </Grid.ColumnDefinitions>
+        <Label Text="HOTELS" Grid.Row="0" Grid.Column="0" />
+        <Label Text="FLIGHTS" Grid.Row="0" Grid.Column="1" />
+        <Label Text="CARS" Grid.Row="1" Grid.Column="0" />
+        <Label Text="ACTIVITIES" Grid.Row="1" Grid.Column="1" />
+      </Grid>
+
+    </StackLayout>-->
+
+
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <Style x:Key="baseButton" TargetType="Button">
+        <Setter Property="BorderRadius" Value="2"/>
+        <Setter Property="FontSize" Value="40" />
+      </Style>
+      <Style x:Key="hotelButton" TargetType="Button" BaseResourceKey="baseButton">
+        <Setter Property="BackgroundColor" Value="Green"/>
+        <Setter Property="TextColor" Value="White" />
+      </Style>
+      <Style x:Key="flightsButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="DarkBlue"/>
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BorderRadius" Value="2"/>
+        <Setter Property="FontSize" Value="40" />
+      </Style>
+      <Style x:Key="carsButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Purple"/>
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BorderRadius" Value="2"/>
+        <Setter Property="FontSize" Value="40" />
+      </Style>
+      <Style x:Key="activitiesButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Orange"/>
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BorderRadius" Value="2"/>
+        <Setter Property="FontSize" Value="40" />
+      </Style>
+      <Style x:Key="hotelInstanceButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="Blue"/>
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BorderRadius" Value="2"/>
+        <Setter Property="FontSize" Value="40" />
+      </Style>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <Grid x:Name="controlGrid" RowSpacing="1" ColumnSpacing="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="10*"/>
+        <RowDefinition Height="10*" />
+        <RowDefinition Height="6*" />
+        <RowDefinition Height="25*" />
+        <RowDefinition Height="25*" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="50*" />
+        <ColumnDefinition Width="50*" />
+      </Grid.ColumnDefinitions>
+
+      <Image Grid.Row="0" Grid.Column="0"
+             Source="{markupExtensions:ImageResourceExtension App2.Images.hotels.jpg}"
+             Aspect="Fill"></Image>
+      <Image Grid.Row="0" Grid.Column="1"
+             Source="{markupExtensions:ImageResourceExtension App2.Images.flights.jpg}"
+             Aspect="Fill">
+        <Image.GestureRecognizers>
+          <TapGestureRecognizer
+                Tapped="onFlightsButtonClicked"  />
+        </Image.GestureRecognizers>
+      </Image>
+      <!--<Button Text = "HOTELS" Grid.Row="0" Grid.Column="0" Style="{StaticResource hotelButton}" />-->
+      <!--<Button Text = "FLIGHTS" Grid.Row="0" Grid.Column="1" Style="{StaticResource flightsButton}" Clicked="onFlightsButtonClicked" />-->
+      <!--<Button Text = "FLIGHTS" Grid.Row="0" Grid.Column="1"
+               Clicked="onFlightsButtonClicked"
+               Image="{markupExtensions:ImageResourceExtension App2.Images.flights.jpg}">
+      </Button>-->
+
+      <Image Grid.Row="1" Grid.Column="0"
+             Source="{markupExtensions:ImageResourceExtension App2.Images.cars.jpg}"
+             Aspect="Fill"></Image>
+      <Image Grid.Row="1" Grid.Column="1"
+             Source="{markupExtensions:ImageResourceExtension App2.Images.activities.jpg}"
+             Aspect="Fill"></Image>
+      <!--<Button Text = "CARS" Grid.Row="1" Grid.Column="0" Style="{StaticResource carsButton}"/>
+      <Button Text = "ACTIVITIES" Grid.Row="1" Grid.Column="1" Style="{StaticResource activitiesButton}"/>-->
+
+      <Label Text="Popular Hotels Tonight" Grid.Row="2" Grid.Column="0"></Label>
+      <Label Text="See More" Grid.Row="2" Grid.Column="1"></Label>
+
+      <Image Grid.Row="3" Grid.ColumnSpan="2"  Grid.Column="0"
+             Source="{markupExtensions:ImageResourceExtension App2.Images.san-francisco.jpg}"
+             Aspect="Fill"></Image>
+      <!--<Button Text = "LOEWS REGENCY SAN FRAN..." Grid.Row="3" Grid.ColumnSpan="2"  Grid.Column="0"  Style="{StaticResource carsButton}"/>-->
+
+
+      <Image Grid.Row="4" Grid.Column="0"
+             Source="{markupExtensions:ImageResourceExtension App2.Images.firmo.jpg}"
+             Aspect="Fill"></Image>
+      <Image Grid.Row="4" Grid.Column="1"
+             Source="{markupExtensions:ImageResourceExtension App2.Images.union.jpg}"
+             Aspect="Fill"></Image>
+      <!--<Button Text = "The FIRMO..." Grid.Row="4" Grid.Column="0" Style="{StaticResource hotelInstanceButton}" />
+      <Button Text = "HOTEL UNIO..." Grid.Row="4" Grid.Column="1" Style="{StaticResource hotelInstanceButton}" />-->
+    </Grid>
+
+  </ContentPage.Content>
+</ContentPage>
