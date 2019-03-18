@@ -33,65 +33,71 @@
     </ResourceDictionary>
   </ContentPage.Resources>
   <ContentPage.Content>
-
-      <ListView  Margin="5,20,5,5" ItemsSource="{Binding}">
+    <StackLayout BackgroundColor="#F5F5F5">
+      <ListView  Margin="5,40,5,5" ItemsSource="{Binding}" BackgroundColor="White">
         <ListView.ItemTemplate>
           <DataTemplate>
-            <ViewCell>
-              <Grid>
-                <Grid.RowDefinitions>
-                  <RowDefinition Height="25*" />
-                  <RowDefinition Height="15*" />
-                  <RowDefinition Height="40*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="20*" />
-                  <ColumnDefinition Width="20*" />
-                  <ColumnDefinition Width="20*" />
-                  <ColumnDefinition Width="20*" />
-                </Grid.ColumnDefinitions>
 
-                <Frame CornerRadius="10" Margin="5" Padding="0" IsClippedToBounds="True">
-                  <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start"
+            <ViewCell >
+              <Frame CornerRadius="5" Margin="5" Padding="0" BorderColor="White" >
+                <StackLayout Padding="15" BackgroundColor="White">
+                  <Grid>
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="25*" />
+                      <RowDefinition Height="15*" />
+                      <RowDefinition Height="15*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="20*" />
+                      <ColumnDefinition Width="20*" />
+                      <ColumnDefinition Width="20*" />
+                      <ColumnDefinition Width="20*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Frame CornerRadius="10" Margin="5" Padding="0" IsClippedToBounds="True">
+                      <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start"
                        Source="{Binding Airline, Converter= {StaticResource airlinesConverter}}"
                        Aspect="AspectFit"></Image>
-                </Frame>
-                <!--<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start"
+                    </Frame>
+                    <!--<Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="Start"
                      Text="{Binding Airlines}" Style="{StaticResource labelAirline}" />-->
-                <!--<Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalOptions="End"
+                    <!--<Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalOptions="End"
                      Text="{Binding Status}" Style="{Binding Status, Converter={StaticResource statusConverter}}"/>-->
-                <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalOptions="Center"
+                    <Label Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" HorizontalOptions="Center"
                      Margin="5"  Text="{Binding Status}">
-                  <Label.Triggers>
-                    <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Arrived">
-                      <Setter Property="TextColor" Value="Green"></Setter>
-                    </DataTrigger>
-                    <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Delayed">
-                      <Setter Property="TextColor" Value="Red"></Setter>
-                    </DataTrigger>
-                  </Label.Triggers>
-                </Label>
-                <Label Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Start"
+                      <Label.Triggers>
+                        <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Arrived">
+                          <Setter Property="TextColor" Value="Green"></Setter>
+                        </DataTrigger>
+                        <DataTrigger TargetType="Label" Binding="{Binding Status}" Value="Delayed">
+                          <Setter Property="TextColor" Value="Red"></Setter>
+                        </DataTrigger>
+                      </Label.Triggers>
+                    </Label>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalTextAlignment="Start"
                      Text="{Binding FlightNumber}"  Style="{StaticResource labelHeader}"/>
-                <Label Grid.Row="1" Grid.Column="1" Text="STA" HorizontalTextAlignment="Start"
+                    <Label Grid.Row="1" Grid.Column="1" Text="STA" HorizontalTextAlignment="Start"
                      Style="{StaticResource labelHeader}"/>
-                <Label Grid.Row="1" Grid.Column="2" Text="ETA" HorizontalTextAlignment="Start"
+                    <Label Grid.Row="1" Grid.Column="2" Text="ETA" HorizontalTextAlignment="Start"
                      Style="{StaticResource labelHeader}"/>
-                <Label Grid.Row="1" Grid.Column="3" Text="Terminal" HorizontalTextAlignment="Start"
+                    <Label Grid.Row="1" Grid.Column="3" Text="Terminal" HorizontalTextAlignment="Start"
                      Style="{StaticResource labelHeader}"/>
-                <Label Grid.Row="2" Grid.Column="0" Text="{Binding Arrival}" HorizontalTextAlignment="Start"
+                    <Label Grid.Row="2" Grid.Column="0" Text="{Binding Arrival}" HorizontalTextAlignment="Start"
                      Style="{StaticResource label}"/>
-                <Label Grid.Row="2" Grid.Column="1" Text="{Binding STA}" HorizontalTextAlignment="Start"
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding STA}" HorizontalTextAlignment="Start"
                      Style="{StaticResource label}"/>
-                <Label Grid.Row="2" Grid.Column="2" Text="{Binding ETA}" HorizontalTextAlignment="Start"
+                    <Label Grid.Row="2" Grid.Column="2" Text="{Binding ETA}" HorizontalTextAlignment="Start"
                      Style="{StaticResource label}"/>
-                <Label Grid.Row="2" Grid.Column="3" Text="{Binding Terminal}" HorizontalTextAlignment="Start"
+                    <Label Grid.Row="2" Grid.Column="3" Text="{Binding Terminal}" HorizontalTextAlignment="Start"
                      Style="{StaticResource label}"/>
-              </Grid>
+                  </Grid>
+                </StackLayout>
+              </Frame>
             </ViewCell>
+
           </DataTemplate>
         </ListView.ItemTemplate>
       </ListView>
-
+    </StackLayout>
   </ContentPage.Content>
 </ContentPage>

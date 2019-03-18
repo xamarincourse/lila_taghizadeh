@@ -54,7 +54,7 @@
   </ContentPage.BindingContext>-->
   <ContentPage.Content>
 
-    <StackLayout>
+    <StackLayout Margin="0,40,0,0">
       <renderers:GradientLayout
         ColorsList="#7F3E97,#A13370,#DD202A"
         Mode="ToBottomRight">

@@ -15,19 +15,21 @@ namespace App2
     public flights()
     {
       InitializeComponent();
-      this.BindingContext = new FlightInfo()
-      {
-        MovingTxt = "It's go time.",
-        BoardingTime = "8:20 PM",
-        DepartureGate = "B79",
-        Departure = "SFO",
-        Arrival = "LAX",
-        Term = "1",
-        ArraivalGate = "A5",
-        Seat = "5A",
-        Depart = DepartStatusEnum.ON_TIME,
-        Status= StatusEnum.On_Time
-      };
+      var data = BoardingPassService.GetBoadrdingPass("bp-12345").Result;
+      //this.BindingContext = new FlightInfo()
+      //{
+      //  MovingTxt = "It's go time.",
+      //  BoardingTime = "8:20 PM",
+      //  DepartureGate = "B79",
+      //  Departure = "SFO",
+      //  Arrival = "LAX",
+      //  Term = "1",
+      //  ArraivalGate = "A5",
+      //  Seat = "5A",
+      //  Depart = DepartStatusEnum.ON_TIME,
+      //  Status= StatusEnum.On_Time
+      //};
+      this.BindingContext = data;
     }
     async void onViewBoardingPassClicked(object sender, EventArgs args)
     {
